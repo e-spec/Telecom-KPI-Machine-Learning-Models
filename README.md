@@ -6,7 +6,7 @@
 ![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
 A focused portfolio of machine learning notebooks for telecom network analytics using KPI-driven modeling.  
-The repository covers four use cases: **coverage prediction**, **fault detection**, **throughput estimation**, and **capacity risk classification**.
+The repository covers five use cases: **coverage prediction**, **fault detection**, **throughput estimation**, **capacity risk classification**, and **downtilt prediction**.
 
 ## Projects
 
@@ -87,6 +87,28 @@ Random Forest was chosen because capacity risk is typically driven by **complex 
 
 ---
 
+### 5. Downtilt Prediction
+**File:** `downtilt_linear_regression_notebook.ipynb`  
+**Model:** `LinearRegression` (Multiple Linear Regression)
+
+Predicts **antenna downtilt angle (degrees)** from telecom KPI features.
+
+**Key Features:**
+- loads and preprocesses `downtilt_dataset_300.csv`
+- prepares input features and target variable (`downtilt_deg`)
+- trains a Multiple Linear Regression model
+- evaluates performance using MAE, RMSE, R², and cross-validation
+- visualizes feature importance and prediction plots
+
+**Required Files (place in same folder):**
+- `downtilt_dataset_300.csv` — main dataset required by the notebook
+- `test_combinations.csv` — additional file for testing/input combinations (if used separately)
+
+**Why this algorithm was selected:**  
+Multiple Linear Regression was selected as an interpretable baseline for downtilt prediction because downtilt is often a function of multiple measurable network parameters. The linear approach provides clear coefficient interpretation, making it useful for engineering analysis and understanding the relationship between KPIs and downtilt settings.
+
+---
+
 ## Tools and Libraries
 
 - Python
@@ -110,4 +132,4 @@ These notebooks demonstrate practical applications of machine learning in teleco
 
 ## Suggested GitHub Description
 
-**Machine learning notebooks for telecom KPI analytics, including coverage prediction, fault detection, throughput estimation, and capacity risk modeling.**
+**Machine learning notebooks for telecom KPI analytics, including coverage prediction, fault detection, throughput estimation, capacity risk modeling, and downtilt prediction.**
