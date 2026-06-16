@@ -3,15 +3,35 @@
 ![Python](https://img.shields.io/badge/Python-3.x-blue)
 ![Jupyter](https://img.shields.io/badge/Notebook-Jupyter-orange)
 ![scikit-learn](https://img.shields.io/badge/ML-scikit--learn-f7931e)
+![License](https://img.shields.io/badge/License-MIT-green)
 ![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
 A focused portfolio of machine learning notebooks for telecom network analytics using KPI-driven modeling.  
 The repository covers four use cases: **coverage prediction**, **fault detection**, **throughput estimation**, and **capacity risk classification**.
 
+---
+
+## Repository Structure
+
+```text
+.
+├── coverage_prediction.ipynb          # RSRP prediction with Random Forest Regression
+├── fault_detection.ipynb              # Network fault classification with Random Forest
+├── throughput_prediction.ipynb        # Throughput estimation with Multiple Linear Regression
+├── capacity_risk_classification.ipynb # Capacity risk classification with Random Forest
+├── telecom_capacity_risk_dataset_300.csv
+├── telecom_mlr_dataset.csv
+├── requirements.txt
+├── LICENSE
+└── README.md
+```
+
+---
+
 ## Projects
 
 ### 1. Coverage Prediction
-**File:** `CoveragePrediction.ipynb`  
+**File:** `coverage_prediction.ipynb`  
 **Model:** `RandomForestRegressor`
 
 Predicts **RSRP** from:
@@ -26,7 +46,7 @@ Random Forest Regression was chosen because radio coverage behavior is often **n
 ---
 
 ### 2. Fault Detection
-**File:** `FAULTDETECTIONv2.ipynb`  
+**File:** `fault_detection.ipynb`  
 **Model:** `RandomForestClassifier`
 
 Classifies telecom network states as **faulty** or **normal** using KPIs such as:
@@ -42,7 +62,7 @@ Random Forest Classification was selected because telecom faults usually depend 
 ---
 
 ### 3. Throughput Prediction
-**File:** `MLR for TPUT.ipynb`  
+**File:** `throughput_prediction.ipynb`  
 **Model:** `LinearRegression`
 
 Estimates **throughput (Mbps)** from:
@@ -62,7 +82,7 @@ Multiple Linear Regression was chosen as a strong **baseline model** because thr
 ---
 
 ### 4. Capacity Risk Classification
-**File:** `CapacityRisk w-RandomForestClass.ipynb`  
+**File:** `capacity_risk_classification.ipynb`  
 **Model:** `RandomForestClassifier`
 
 Predicts **capacity risk** using:
@@ -87,9 +107,62 @@ Random Forest was chosen because capacity risk is typically driven by **complex 
 
 ---
 
+## Results Snapshot
+
+Summary of model evaluation metrics across all four notebooks:
+
+| Project | Model | Key Metric(s) |
+|---|---|---|
+| Coverage Prediction | Random Forest Regressor | MAE: 3.82 dBm · RMSE: 4.16 dBm · R²: 0.89 |
+| Fault Detection | Random Forest Classifier | Accuracy: 1.00 · Precision: 1.00 · Recall: 1.00 · F1: 1.00 |
+| Throughput Prediction | Multiple Linear Regression | MAE: 1.96 Mbps · RMSE: 2.29 Mbps · R²: 0.97 |
+| Capacity Risk Classification | Random Forest Classifier | Accuracy: 1.00 · Precision: 1.00 · Recall: 1.00 · F1: 1.00 |
+
+> **Note:** Metrics are computed on the sample datasets bundled with this repository. See [Dataset Notes](#dataset-notes) for context.
+
+---
+
+## Dataset Notes
+
+The CSV files included in this repository (`telecom_capacity_risk_dataset_300.csv` and `telecom_mlr_dataset.csv`) are **sample / demo datasets** generated for illustrative purposes. They are intended to demonstrate modeling workflows and are not derived from a production network or real operator data. Metrics and feature importance values reflect performance on these synthetic samples and should not be interpreted as benchmarks for production deployment.
+
+---
+
+## Setup
+
+**Prerequisites:** Python 3.8 or later and `pip`.
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/e-spec/Telecom-KPI-Machine-Learning-Models.git
+cd Telecom-KPI-Machine-Learning-Models
+
+# 2. (Optional) Create and activate a virtual environment
+python -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+```
+
+---
+
+## How to Run
+
+```bash
+# Launch Jupyter
+jupyter notebook
+```
+
+Open any of the four notebooks in your browser and run all cells from top to bottom (`Kernel → Restart & Run All`).
+
+Each notebook is self-contained: it loads data, preprocesses it, trains the model, and prints evaluation metrics inline.
+
+---
+
 ## Tools and Libraries
 
-- Python
+- Python 3.x
 - Jupyter Notebook
 - pandas
 - numpy
@@ -108,6 +181,6 @@ These notebooks demonstrate practical applications of machine learning in teleco
 
 ---
 
-## Suggested GitHub Description
+## License
 
-**Machine learning notebooks for telecom KPI analytics, including coverage prediction, fault detection, throughput estimation, and capacity risk modeling.**
+This project is licensed under the [MIT License](LICENSE).
