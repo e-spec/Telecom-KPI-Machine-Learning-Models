@@ -153,4 +153,4 @@ These notebooks demonstrate practical applications of machine learning in teleco
 
 ## Suggested GitHub Description
 
-**Machine learning notebooks for telecom KPI analytics, including coverage prediction, fault detection, throughput estimation, capacity risk modeling, and downtilt prediction.**
+**Machine learning notebooks for telecom KPI analytics, including coverage prediction, fault detection, throughput estimation, capacity risk modeling, and downtilt prediction (including EDA).**
