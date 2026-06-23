@@ -109,6 +109,27 @@ Multiple Linear Regression was selected as an interpretable baseline for downtil
 
 ---
 
+#### EDA for Downtilt Dataset
+**Folder:** `EDA for Downtilt Dataset/`  
+**File:** `downtilt_eda.ipynb`
+
+Exploratory Data Analysis for the downtilt prediction dataset.
+
+**Key Insights:**
+- **Target:** `downtilt_deg` ranges 1.0°–11.33° (mean: 5.91°, median: 6.15°)
+- **Environment:** Urban (8-11°), Suburban (5-7°), Rural (1-3°)
+- **Top Correlations:**
+  - Positive: `user_density` (+0.77), `traffic_load` (+0.75), `capacity_utilization` (+0.72)
+  - Negative: `inter_site_distance` (-0.79), `coverage_km2` (-0.73)
+- **Data Quality:** No missing values. Outliers reflect real urban/rural diversity.
+- **Multicollinearity:** `site_height_m` and `antenna_height_m` are nearly identical (r = 0.99) – consider dropping one.
+
+**Visualizations:** Distribution plots, correlation heatmap, environment comparison, feature scatter plots, outlier detection, and pairplot.
+
+**How to Run:** Place `downtilt_dataset_300.csv` in the same folder and run `downtilt_eda.ipynb`.
+
+---
+
 ## Tools and Libraries
 
 - Python
