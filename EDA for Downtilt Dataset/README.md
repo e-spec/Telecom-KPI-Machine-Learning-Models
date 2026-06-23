@@ -60,7 +60,7 @@ This folder contains the Exploratory Data Analysis (EDA) for the **Downtilt Pred
 - Prepare data for model training (preprocessing, train/test split).
 
 ## Author
-[Your Name/Team]
+- **Edder Gutierrez**
 
 ## Date
-[Date of Analysis]
+- **June 2026**
