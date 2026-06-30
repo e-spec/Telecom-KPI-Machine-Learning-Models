@@ -30,12 +30,10 @@ Exploratory Data Analysis (EDA) for the Tower Height Prediction project. This an
 
 ## Files
 - `tower_height_dataset_1000rows.csv` - Main dataset
-- `tower_height_analysis.xlsx` - Summary statistics
-- `correlation_heatmap.png` - Feature correlation matrix
-- `target_variable_analysis.png` - Height distribution plots
+- `EDA_Tower_Height_Prediction.ipynb` - Jupyter Notebook
 
 ## Next Steps
 Proceed to ML modeling using the top 5 correlated features with expected R² > 0.85.
 
 ---
-*Part of the Tower Height Prediction project*
+Edder Gutierrez
