@@ -1,16 +1,12 @@
 # Telecom KPI Machine Learning Models
 
-![Python](https://img.shields.io/badge/Python-3.x-blue)
-![Jupyter](https://img.shields.io/badge/Notebook-Jupyter-orange)
-![scikit-learn](https://img.shields.io/badge/ML-scikit--learn-f7931e)
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
-
 A focused portfolio of machine learning notebooks for telecom network analytics using KPI-driven modeling.  
-The repository covers five use cases: **coverage prediction**, **fault detection**, **throughput estimation**, **capacity risk classification**, and **downtilt prediction**.
+The repository covers **six use cases**: coverage prediction, fault detection, throughput estimation, capacity risk classification, downtilt prediction, and tower height prediction.
 
 ## Projects
 
 ### 1. Coverage Prediction
+
 **File:** `CoveragePrediction.ipynb`  
 **Model:** `RandomForestRegressor`
 
@@ -26,6 +22,7 @@ Random Forest Regression was chosen because radio coverage behavior is often **n
 ---
 
 ### 2. Fault Detection
+
 **File:** `FAULTDETECTIONv2.ipynb`  
 **Model:** `RandomForestClassifier`
 
@@ -42,6 +39,7 @@ Random Forest Classification was selected because telecom faults usually depend 
 ---
 
 ### 3. Throughput Prediction
+
 **File:** `MLR for TPUT.ipynb`  
 **Model:** `LinearRegression`
 
@@ -62,6 +60,7 @@ Multiple Linear Regression was chosen as a strong **baseline model** because thr
 ---
 
 ### 4. Capacity Risk Classification
+
 **File:** `CapacityRisk w-RandomForestClass.ipynb`  
 **Model:** `RandomForestClassifier`
 
@@ -88,6 +87,7 @@ Random Forest was chosen because capacity risk is typically driven by **complex 
 ---
 
 ### 5. Downtilt Prediction
+
 **File:** `downtilt_linear_regression_notebook.ipynb`  
 **Model:** `LinearRegression` (Multiple Linear Regression)
 
@@ -109,6 +109,38 @@ Multiple Linear Regression was selected as an interpretable baseline for downtil
 
 ---
 
+### 6. Tower Height Prediction
+
+**Folder:** `tower-height-prediction-with-4-ML-models/`  
+**Models:** `RandomForestRegressor`, `GradientBoostingRegressor`, `XGBRegressor`, `LinearRegression`
+
+Predicts **cellular tower height (meters)** using RF and network planning parameters.
+
+**Key Features:**
+- **Dataset**: 1,000 realistic tower samples across 4 terrain types
+- **Features**: 11 predictors including `coverage_radius_km`, `sinr_db`, `frequency_band_mhz`, `rsrp_dbm`
+- **Target**: `tower_height_m` (18-100m)
+- **EDA**: Comprehensive exploratory analysis with correlation heatmaps and feature importance
+- **Model Comparison**: Evaluates 4 models with performance metrics
+
+**Performance:**
+
+| Model | R² Score | MAE (m) | RMSE (m) |
+|-------|----------|---------|----------|
+| **Random Forest** | **0.9674** | **3.25** | **4.25** |
+| Gradient Boosting | 0.9658 | 3.33 | 4.36 |
+| XGBoost | 0.9653 | 3.39 | 4.39 |
+| Linear Regression | 0.9610 | 3.73 | 4.65 |
+
+**Why these algorithms were selected:**  
+Multiple algorithms were tested to find the best performer. Random Forest was selected as the final model because it achieved the highest R² (0.9674) while maintaining robustness and interpretability. The ensemble approach handles non-linear relationships between RF parameters and tower height effectively.
+
+**Required Files (place in same folder):**
+- `tower_height_dataset_1000rows.csv` — main dataset with 11 features
+- `EDA-for-Tower-Dataset/` — exploratory analysis notebooks and outputs
+
+---
+
 ## Tools and Libraries
 
 - Python
@@ -117,8 +149,7 @@ Multiple Linear Regression was selected as an interpretable baseline for downtil
 - numpy
 - matplotlib
 - scikit-learn
-
----
+- XGBoost (for tower height project)
 
 ## Objective
 
@@ -128,8 +159,6 @@ These notebooks demonstrate practical applications of machine learning in teleco
 - model evaluation,
 - and result interpretation.
 
----
-
 ## Suggested GitHub Description
 
-**Machine learning notebooks for telecom KPI analytics, including coverage prediction, fault detection, throughput estimation, capacity risk modeling, and downtilt prediction.**
+Machine learning notebooks for telecom KPI analytics, including coverage prediction, fault detection, throughput estimation, capacity risk modeling, downtilt prediction, and tower height prediction.
