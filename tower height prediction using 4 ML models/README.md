@@ -90,18 +90,6 @@ The Random Forest model outperformed all other models, achieving excellent accur
 
 ---
 
-## Quick Usage
-
-```python
-import joblib
-
-# Load model and scaler
-model = joblib.load('tower_height_model.pkl')
-scaler = joblib.load('scaler.pkl')
-
-# Predict on new data
-predicted_height = model.predict(scaled_data)
-
----
-
 ## Author: Edder Gutierrez
+
+
