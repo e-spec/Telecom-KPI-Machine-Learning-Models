@@ -1,135 +1,95 @@
-# Telecom KPI Machine Learning Models
+# Tower Height Prediction Model
 
-![Python](https://img.shields.io/badge/Python-3.x-blue)
-![Jupyter](https://img.shields.io/badge/Notebook-Jupyter-orange)
-![scikit-learn](https://img.shields.io/badge/ML-scikit--learn-f7931e)
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
+## Overview
+This repository contains the machine learning models for predicting cellular tower heights using four different algorithms. The models were trained on 1,000 realistic tower samples across four terrain types.
 
-A focused portfolio of machine learning notebooks for telecom network analytics using KPI-driven modeling.  
-The repository covers five use cases: **coverage prediction**, **fault detection**, **throughput estimation**, **capacity risk classification**, and **downtilt prediction**.
+## Dataset
 
-## Projects
+| Aspect | Details |
+|--------|---------|
+| **Samples** | 1,000 rows |
+| **Features** | 11 predictors |
+| **Target** | tower_height_m (18-100m) |
+| **Terrains** | Dense Urban, Urban, Suburban, Rural |
+| **Data Quality** | No missing values, realistic RF parameters |
 
-### 1. Coverage Prediction
-**File:** `CoveragePrediction.ipynb`  
-**Model:** `RandomForestRegressor`
+### Key Features
 
-Predicts **RSRP** from:
-- distance
-- frequency
-- transmit power
-- antenna height
-
-**Why this algorithm was selected:**  
-Random Forest Regression was chosen because radio coverage behavior is often **nonlinear** and influenced by interactions between engineering variables. It is well suited for small structured datasets and provides more flexibility than a simple linear model.
-
----
-
-### 2. Fault Detection
-**File:** `FAULTDETECTIONv2.ipynb`  
-**Model:** `RandomForestClassifier`
-
-Classifies telecom network states as **faulty** or **normal** using KPIs such as:
-- RSRP, RSRQ, SINR, CQI
-- transmit power, VSWR, temperature
-- PRB utilization
-- drop call rate, handover failure rate
-- packet loss, latency, alarm count
-
-**Why this algorithm was selected:**  
-Random Forest Classification was selected because telecom faults usually depend on **multiple KPI interactions rather than a single threshold**. The model is robust, interpretable through feature importance, and performs well on structured classification tasks.
+| Category | Features |
+|----------|----------|
+| **Environment** | terrain_type, population_density_km2 |
+| **Frequency** | frequency_band_mhz, bandwidth_mhz, coverage_radius_km |
+| **Network Planning** | inter_site_distance_km |
+| **Antenna/Transmission** | antenna_gain_dbi, transmission_power_w |
+| **RF Signal Quality** | sinr_db, rsrp_dbm, rsrq_db |
 
 ---
 
-### 3. Throughput Prediction
-**File:** `MLR for TPUT.ipynb`  
-**Model:** `LinearRegression`
+## Model Performance
 
-Estimates **throughput (Mbps)** from:
-- bandwidth
-- MIMO layers
-- active users
-- PRB utilization
-- SINR
-- CQI
-- packet loss
-- latency
-- weekend indicator
+### Model Comparison
 
-**Why this algorithm was selected:**  
-Multiple Linear Regression was chosen as a strong **baseline model** because throughput is often influenced by several measurable KPIs in a way that can be approximated linearly. It also provides clear interpretability through coefficients, making it useful for analysis and explanation.
+| Model | R² Score | MAE (m) | RMSE (m) |
+|-------|----------|---------|----------|
+| **Random Forest** | **0.9674** | **3.25** | **4.25** |
+| Gradient Boosting | 0.9658 | 3.33 | 4.36 |
+| XGBoost | 0.9653 | 3.39 | 4.39 |
+| Linear Regression | 0.9610 | 3.73 | 4.65 |
 
----
+### Best Model: Random Forest 🏆
 
-### 4. Capacity Risk Classification
-**File:** `CapacityRisk w-RandomForestClass.ipynb`  
-**Model:** `RandomForestClassifier`
+- **R² Score**: 0.9674 (explains 96.7% of variance)
+- **MAE**: 3.25 meters (average prediction error)
+- **RMSE**: 4.25 meters (penalizes larger errors)
 
-Predicts **capacity risk** using:
-- DL and UL PRB utilization
-- active users
-- SINR
-- average modulation order
-- packet loss
-- latency
-- drop call rate
-- downlink throughput
-- weekend indicator
-
-Includes:
-- confusion matrix
-- classification report
-- feature importance
-- decision tree visualization
-
-**Why this algorithm was selected:**  
-Random Forest was chosen because capacity risk is typically driven by **complex nonlinear relationships** among utilization, user load, radio quality, and service KPIs. It captures these interactions effectively while still allowing feature-level interpretation.
+The Random Forest model outperformed all other models, achieving excellent accuracy in predicting tower heights.
 
 ---
 
-### 5. Downtilt Prediction
-**File:** `downtilt_linear_regression_notebook.ipynb`  
-**Model:** `LinearRegression` (Multiple Linear Regression)
+## Key Insights
 
-Predicts **antenna downtilt angle (degrees)** from telecom KPI features.
+### What Drives Tower Height?
 
-**Key Features:**
-- loads and preprocesses `downtilt_dataset_300.csv`
-- prepares input features and target variable (`downtilt_deg`)
-- trains a Multiple Linear Regression model
-- evaluates performance using MAE, RMSE, R², and cross-validation
-- visualizes feature importance and prediction plots
+| Correlation Type | Feature | Value | Relationship |
+|------------------|---------|-------|--------------|
+| **Positive** | coverage_radius_km | +0.952 | Larger coverage → Taller towers |
+| **Positive** | inter_site_distance_km | +0.902 | More site spacing → Taller towers |
+| **Negative** | sinr_db | -0.876 | Poor signal → Taller towers |
+| **Negative** | frequency_band_mhz | -0.807 | Lower frequency → Taller towers |
+| **Negative** | rsrp_dbm | -0.748 | Weaker signal → Taller towers |
 
-**Required Files (place in same folder):**
-- `downtilt_dataset_300.csv` — main dataset required by the notebook
-- `test_combinations.csv` — additional file for testing/input combinations (if used separately)
+### Real-World Patterns
 
-**Why this algorithm was selected:**  
-Multiple Linear Regression was selected as an interpretable baseline for downtilt prediction because downtilt is often a function of multiple measurable network parameters. The linear approach provides clear coefficient interpretation, making it useful for engineering analysis and understanding the relationship between KPIs and downtilt settings.
-
----
-
-## Tools and Libraries
-
-- Python
-- Jupyter Notebook
-- pandas
-- numpy
-- matplotlib
-- scikit-learn
+| Terrain | Height Range | Signal Quality |
+|---------|--------------|----------------|
+| **Dense Urban** | 18-40m | High SINR, strong signal |
+| **Urban** | 25-50m | Good signal, moderate coverage |
+| **Suburban** | 25-50m | Medium signal, medium coverage |
+| **Rural** | 50-100m | Low SINR, weak signal |
 
 ---
 
-## Objective
+## Sample Predictions
 
-These notebooks demonstrate practical applications of machine learning in telecom engineering, with emphasis on:
-- structured KPI modeling,
-- regression and classification workflows,
-- model evaluation,
-- and result interpretation.
+| Terrain | Coverage (km) | SINR (dB) | RSRP (dBm) | Predicted Height |
+|---------|--------------|-----------|------------|------------------|
+| Urban | 0.3 | 28.0 | -55 | 33.4m |
+| Urban | 0.8 | 22.0 | -65 | 34.6m |
+| Suburban | 2.5 | 16.0 | -78 | 33.7m |
+| **Rural** | **12.0** | **8.0** | **-95** | **74.3m** |
+| **Rural** | **18.0** | **5.0** | **-105** | **84.0m** |
 
 ---
 
-## Suggested GitHub Description
+## Business Impact
 
-**Machine learning notebooks for telecom KPI analytics, including coverage prediction, fault detection, throughput estimation, capacity risk modeling, and downtilt prediction.**
+- **Faster site planning** for network deployment
+- **Cost optimization** by predicting height requirements
+- **Better coverage decisions** based on terrain and signal quality
+- **Data-driven decisions** moving from intuition to evidence-based planning
+
+---
+
+## Author: Edder Gutierrez
+
+
